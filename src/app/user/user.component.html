@@ -1,0 +1,157 @@
+
+
+<h1 > {{name}}</h1>
+
+<ul>
+
+    <li>Age:{{age}}</li>
+
+    <li>Email:{{email}}</li>
+
+    <li>Adress:{{address.street}},{{address.city}},{{address.state}}</li>
+
+</ul>
+<button class="btn" (click)="onClick()">Click</button>
+
+<button class="btn" (click)="toggleEdit()">EditUser</button>
+
+<div *ngIf=isEdit>
+<h1>Edit user</h1>
+
+<form style="width:50%; padding:25px;;" class="form-group" #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate>
+
+<div>
+
+<label for="Name" >Name: </label>
+
+<input class="form-control" type="text" [(ngModel)] = "name" name="name">
+
+
+</div>
+
+<div>
+
+<label for="Email"  >Email: </label>
+
+<input class="form-control" type="text" [(ngModel)] = "email" name="email">
+
+
+</div>
+
+
+
+<div>
+
+<label for="Age" >Age: </label>
+
+<input class="form-control" type="number" [(ngModel)] = "age" name="age">
+
+
+</div>
+
+<div>
+
+<label for="Street" >Street: </label>
+
+<input class="form-control" type="text" [(ngModel)] = "address.street" name="address">
+
+
+</div>
+
+<div>
+
+<label for="City" >City: </label>
+
+<input class="form-control" type="text" [(ngModel)] = "address.city" name="city">
+
+
+</div>
+
+<div>
+
+<label for="State" >State: </label>
+
+<input class="form-control" type="text" [(ngModel)] = "address.state" name="state">
+
+
+</div>
+
+
+<button style="margin-top:9px;" class="btn pull-right">Submit data</button>
+
+</form>
+
+</div>
+
+
+
+<h1>Hobbies</h1>
+
+<form (submit)="addHobby(hobby.value)">
+
+<div>
+
+<label for="hobby" >Hobby</label>
+
+<input type="text" #hobby>
+
+
+</div>
+
+</form>
+
+<ul>
+
+    <li *ngFor="let hobby of hobbies;let i = index;">{{i+1}}: {{hobby}}
+
+        <button class="btn" (click)="deleteHobby(hobby)">X</button>
+
+    </li>
+
+</ul>
+
+<h1>Posts</h1>
+
+<th >book ---------</th><th style="margin-left:220px;">author</th>
+
+<div *ngFor="let posts of posts">
+
+
+    <ul>
+        <li>{{posts.book_name}} :  {{posts.book_author}} <button (click)="toggleUpdate(posts.id)">Edit</button><button (click)="onDelete(posts.id)">X</button> </li>
+
+    </ul>
+
+
+
+</div>
+
+<p id="ioid"></p>
+
+
+<div *ngIf=isUpdate>
+<h1>Update book</h1>
+
+<form   #fm="ngForm" (ngSubmit)="updateBook(fm)" novalidate >
+
+<div>
+
+<label for="hobby" >Book name</label>
+
+<input type="text" name="book_name" [(ngModel)] = "bookz.book_name">
+
+
+<label for="hobby" >Book author</label>
+
+<input type="text" name="book_author" [(ngModel)] = "bookz.book_author">
+
+
+
+<button class="btn">Update book</button>
+
+
+</div>
+
+</form>
+
+</div>
